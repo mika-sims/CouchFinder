@@ -21,12 +21,21 @@ ALLOWED_HOSTS = []
 
 # Installed and Created Apps
 INSTALLED_APPS = [
+    # Default Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    
+    # Third Party Apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    # Created Apps
 ]
 
 MIDDLEWARE = [
