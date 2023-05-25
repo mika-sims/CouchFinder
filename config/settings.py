@@ -18,7 +18,7 @@ DEBUG = True
 
 # Allowed Hosts for the project 
 ALLOWED_HOSTS = [
-    'https://couchfinder.herokuapp.com/',
+    'couchfinder.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
