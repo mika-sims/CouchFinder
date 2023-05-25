@@ -17,7 +17,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 # Allowed Hosts for the project 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://couchfinder.herokuapp.com/',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Installed and Created Apps
