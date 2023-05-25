@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     # Created Apps
 ]
 
+# Unique identifier for Django Sites
+SITE_ID = 1
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
