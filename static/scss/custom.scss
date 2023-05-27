@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+
+$font-family-sans-serif: "Poppins", sans-serif;
+$font-weight-bold: 600;
+$primary: #264653;
+$secondary: #2a9d8f;
+$danger: #e76f51;
+$light: #f3f8f9;
+$accordion-button-active-bg: #ffffff;
+$accordion-button-active-bg: #72C6BB;
+$accordion-button-focus-box-shadow: #ffffff00;
+$accordion-icon-color: #e76f51;
+$accordion-icon-active-color:   $light;
+$navbar-toggler-focus-width: 0;
+$navbar-toggler-font-size: 1em;
+$btn-border-radius: 2px;
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2.5,
+);
+
+@import "../bootstrap/scss/bootstrap";
