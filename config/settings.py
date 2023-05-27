@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'storages',
 
     # Created Apps
+    'main', # App to render the home page
 ]
 
 # Unique identifier for Django Sites
