@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Created Apps
     'main', # App to render the home page
+    'accounts', # App to handle user accounts
 ]
 
 # Unique identifier for Django Sites
