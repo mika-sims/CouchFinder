@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'storages',
+    'cities_light',
 
     # Created Apps
     'main',  # App to render the home page
