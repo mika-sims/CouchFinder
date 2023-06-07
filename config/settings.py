@@ -10,7 +10,7 @@ if os.path.exists('env.py'):
 # Path to the project root folder
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Path to 
+# Path to the templates folder
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Django Secret Key
@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # Django Debug Mode
 DEBUG = True
 
-# Allowed Hosts for the project 
+# Allowed Hosts for the project
 ALLOWED_HOSTS = [
     'couchfinder.herokuapp.com',
     'localhost',
@@ -45,12 +45,21 @@ INSTALLED_APPS = [
     'storages',
 
     # Created Apps
-    'main', # App to render the home page
-    'accounts', # App to handle user accounts
+    'main',  # App to render the home page
+    'accounts',  # App to handle user accounts
 ]
 
 # Unique identifier for Django Sites
 SITE_ID = 1
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Django-Allauth Configuration
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHO = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
