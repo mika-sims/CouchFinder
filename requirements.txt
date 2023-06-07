@@ -11,6 +11,7 @@ dj-database-url==2.0.0
 Django==3.2
 django-allauth==0.54.0
 django-autoslug==1.9.9
+django-cities-light @ git+https://github.com/jazzband/django-cities-light.git@14d4996b24c49fc74d230f06c25dcf26e06efad1
 django-heroku==0.3.1
 django-storages==1.13.2
 gunicorn==20.1.0
