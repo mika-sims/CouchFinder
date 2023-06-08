@@ -39,16 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Third Party Apps
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'storages',
-    'cities_light',
+    'allauth', # App to handle user accounts
+    'allauth.account', # App to handle user accounts
+    'allauth.socialaccount', # App to handle social authentication
+    'storages', # App to store static and media files in AWS S3 Bucket
+    'cities_light', # App to get cities, states and countries
+    'crispy_forms', # App to style Django Forms
+    'crispy_bootstrap5', # App to style Django Forms with Bootstrap 5
 
     # Created Apps
     'main',  # App to render the home page
     'accounts',  # App to handle user accounts
 ]
+
+# Crispy Forms Configuration
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Unique identifier for Django Sites
 SITE_ID = 1
