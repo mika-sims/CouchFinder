@@ -5,7 +5,7 @@
 /*--------------------------------------------------------
 Hero Section
 *--------------------------------------------------------*/
-#hero {
+#hero, #signup {
   background-image: linear-gradient(#ffffffb0, #ffffff6b),
     url("/static/images/hero.jpg");
   background-repeat: no-repeat;
