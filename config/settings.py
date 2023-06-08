@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Third Party Apps
-    'allauth', # App to handle user accounts
-    'allauth.account', # App to handle user accounts
-    'allauth.socialaccount', # App to handle social authentication
-    'storages', # App to store static and media files in AWS S3 Bucket
-    'cities_light', # App to get cities, states and countries
-    'crispy_forms', # App to style Django Forms
-    'crispy_bootstrap5', # App to style Django Forms with Bootstrap 5
+    'allauth',  # App to handle user accounts
+    'allauth.account',  # App to handle user accounts
+    'allauth.socialaccount',  # App to handle social authentication
+    'storages',  # App to store static and media files in AWS S3 Bucket
+    'cities_light',  # App to get cities, states and countries
+    'crispy_forms',  # App to style Django Forms
+    'crispy_bootstrap5',  # App to style Django Forms with Bootstrap 5
 
     # Created Apps
     'main',  # App to render the home page
@@ -62,6 +62,9 @@ SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Django-Allauth Configuration
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignUpForm',
+}
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHO = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
