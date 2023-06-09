@@ -34,6 +34,9 @@ class CustomSignUpForm(SignupForm):
 
 class CustomLoginForm(LoginForm):
 
+    remember_me = forms.BooleanField(required=False, label='Remember Me',
+                                    widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
+
     def __init__(self, *args, **kwargs):
         super(CustomLoginForm, self).__init__(*args, **kwargs)
 
