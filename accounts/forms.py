@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from allauth.account.forms import SignupForm
+from allauth.account.forms import (SignupForm, LoginForm)
 
 
 class CustomSignUpForm(SignupForm):
@@ -30,3 +30,25 @@ class CustomSignUpForm(SignupForm):
         user.last_name = self.cleaned_data['last_name']
         user.save()
         return user
+
+
+class CustomLoginForm(LoginForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CustomLoginForm, self).__init__(*args, **kwargs)
+
+        self.fields['login'].widget = forms.TextInput(attrs={
+            'placeholder': 'Email*',
+        })
+        self.fields['password'].widget = forms.PasswordInput(attrs={
+            'placeholder': 'Password*',
+        })
+
+        for field_name in [
+            'login',
+            'password',
+        ]:
+            self.fields[field_name].label = False
+
+    def login(self, *args, **kwargs):
+        return super(CustomLoginForm, self).login(*args, **kwargs)
