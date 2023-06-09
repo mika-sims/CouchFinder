@@ -64,6 +64,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Django-Allauth Configuration
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignUpForm',
+    'login': 'accounts.forms.CustomLoginForm',
 }
 LOGIN_REDIRECT_URL = 'homepage'
 LOGOUT_REDIRECT_URL = 'homepage'
