@@ -24,6 +24,16 @@ class CustomSignUpForm(SignupForm):
         ]:
             self.fields[field_name].label = False
 
+    def clean_email(self):
+        # Check if the email address is already verified
+        email = self.cleaned_data['email']
+        if get_user_model().objects.filter(email=email, emailaddress__verified=False).exists():
+            raise forms.ValidationError(
+                'An account with this email address has been created but is not yet verified. '
+                'Please check your email for the verification link.'
+            )
+        return email
+
     def save(self, request):
         user = super(CustomSignUpForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']
