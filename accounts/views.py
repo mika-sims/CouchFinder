@@ -1,8 +1,7 @@
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.views.generic.edit import FormView
+
 
 from . import forms
 from . import models
@@ -21,15 +20,27 @@ class UserProfileView(generic.TemplateView, LoginRequiredMixin):
         return context
 
 
-@method_decorator(login_required, name='dispatch')
-class EditUserProfileView(generic.UpdateView):
-    model = models.CustomUserProfile
+class UpdateProfileView(LoginRequiredMixin, FormView):
+    """
+    View for the update profile page.
+    """
+    template_name = 'update_profile.html'
     form_class = forms.UpdateUserProfileForm
-    template_name = 'edit_profile.html'
-    success_url = reverse_lazy('user_profile')
-    
-    def get_object(self):
-        return models.CustomUserProfile.objects.get(user=self.request.user)
-    
-    def get_success_url(self):
-        return reverse_lazy('user_profile')
+    success_url = 'user_profile'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.request.user.customuserprofile
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        return super().post(request, *args, **kwargs)
