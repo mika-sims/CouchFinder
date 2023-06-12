@@ -1,7 +1,8 @@
+from django.http import JsonResponse
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
-
+from cities_light.models import Region, City
 
 from . import forms
 from . import models
@@ -44,3 +45,21 @@ class UpdateProfileView(LoginRequiredMixin, FormView):
     def post(self, request, *args, **kwargs):
         self.object = None
         return super().post(request, *args, **kwargs)
+
+
+def get_regions(request):
+    country_id = request.GET.get('country_id')
+    regions = Region.objects.filter(country_id=country_id)
+    data = {
+        'regions': [{'id': region.id, 'name': region.name} for region in regions]
+    }
+    return JsonResponse(data)
+
+
+def get_cities(request):
+    region_id = request.GET.get('region_id')
+    cities = City.objects.filter(region_id=region_id)
+    data = {
+        'cities': [{'id': city.id, 'name': city.name} for city in cities]
+    }
+    return JsonResponse(data)
