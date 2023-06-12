@@ -71,35 +71,30 @@ class CustomLoginForm(LoginForm):
 
 
 class UpdateUserProfileForm(forms.ModelForm):
-    profile_picture = forms.ImageField(
-        required=False, widget=forms.FileInput(attrs={'class': 'form-horizontal'}))
-    bio = forms.CharField(max_length=500, required=False, widget=forms.Textarea(
-        attrs={'rows': 6, 'placeholder': 'Write something detailed about yourself'}))
-    occupation = forms.CharField(max_length=100, required=False, widget=forms.TextInput(
-        attrs={'class': 'form-horizontal', 'placeholder': 'What do you do?'}))
-    status = forms.ChoiceField(choices=CustomUserProfile.PROFILE_STATUS, widget=forms.Select(
-        attrs={'class': 'form-horizontal'}))
+    """
+    Form to update user profile
+    """
     country = forms.ModelChoiceField(queryset=Country.objects.all(
-    ), widget=forms.Select(attrs={'class': 'form-horizontal'}))
-    region = forms.ModelChoiceField(queryset=Region.objects.all(
-    ), required=False, widget=forms.Select(attrs={'class': 'form-horizontal'}))
-    city = forms.ModelChoiceField(queryset=City.objects.all(
-    ), required=False, widget=forms.Select(attrs={'class': 'form-horizontal'}))
+    ), widget=forms.Select(attrs={
+        'class': 'select2',
+        'data-allow-clear': 'true',
+        'data-placeholder': 'Select a Country'
+    }))
+    region = forms.ModelChoiceField(queryset=Region.objects.none(
+    ), widget=forms.Select(attrs={
+        'class': 'select2',
+        'data-allow-clear': 'true',
+        'data-placeholder': 'Select a Region'
+    }))
+    city = forms.ModelChoiceField(queryset=City.objects.none(
+    ), widget=forms.Select(attrs={
+        'class': 'select2',
+        'data-allow-clear': 'true', 
+        'data-placeholder': 'Select a City'
+        }))
+
 
     class Meta:
         model = CustomUserProfile
-        fields = ('profile_picture', 'bio', 'occupation',
-                  'profile_status', 'country', 'region', 'city')
-
-    def save(self, commit=True):
-        profile = super().save(commit=False)
-        profile.profile_picture = self.cleaned_data.get('profile_picture')
-        profile.bio = self.cleaned_data.get('bio')
-        profile.occupation = self.cleaned_data.get('occupation')
-        profile.profile_status = self.cleaned_data.get('profile_status')
-        profile.country = self.cleaned_data.get('country')
-        profile.region = self.cleaned_data.get('region')
-        profile.city = self.cleaned_data.get('city')
-        if commit:
-            profile.save()
-        return profile
+        fields = ['profile_picture', 'bio', 'occupation', 'profile_status',
+                  'country', 'region', 'city']
