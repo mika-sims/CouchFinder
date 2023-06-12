@@ -49,8 +49,8 @@ class CustomUserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     profile_picture = models.ImageField(
         upload_to='profile_pictures', default='placeholder.png')
-    bio = models.TextField(max_length=500, blank=True, null=True)
-    occupation = models.CharField(max_length=250, blank=True, null=True)
+    bio = models.TextField(max_length=500, blank=True, default='')
+    occupation = models.CharField(max_length=250, blank=True, default='')
     profile_status = models.CharField(
         max_length=10, choices=PROFILE_STATUS, default='busy')
     country = models.ForeignKey(
