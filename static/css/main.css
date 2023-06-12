@@ -3,7 +3,7 @@
 }
 
 .footnote{
-font-size: 0.75em;
+  font-size: 0.75em;
 }
 
 .small-logo{
@@ -13,6 +13,25 @@ font-size: 0.75em;
 .dash-mode{
   height: 2px;
   color: #264653;
+}
+
+.profile-page-image {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+
+.travelling {
+  background-color: #2a9d8f;
+}
+
+.hosting {
+  background-color: #e76f51;
+}
+
+.busy {
+  background-color: #2c384e;
 }
 
 /*--------------------------------------------------------
@@ -335,17 +354,17 @@ LOGO ANIMATION
 About Section
 */
 
-.card{
-    transform: scale(.98);
-    transition: all ease-in-out .2s;
+.hiw-card {
+  transform: scale(0.98);
+  transition: all ease-in-out 0.2s;
 }
 
-.card:hover{
-    transform: scale(1);
+.hiw-card:hover {
+  transform: scale(1);
 }
 
-.card-img-top{
-    max-height: 16em;
+.hiw-card-img {
+  max-height: 16em;
 }
 
 
@@ -375,6 +394,12 @@ MEDIA QUIRIES
   .small-logo{
     max-width: 5em;
   }
+
+  .profile-page-image {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -383,6 +408,14 @@ MEDIA QUIRIES
   }
   .hero-logo {
     width: 55vw;
+  }
+
+  
+  .profile-page-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
   }
 }
 
