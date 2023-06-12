@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from allauth.account.forms import (SignupForm, LoginForm)
-from cities_light.models import Country, Region, City
 
 from .models import CustomUserProfile
 
@@ -74,27 +73,8 @@ class UpdateUserProfileForm(forms.ModelForm):
     """
     Form to update user profile
     """
-    country = forms.ModelChoiceField(queryset=Country.objects.all(
-    ), widget=forms.Select(attrs={
-        'class': 'select2',
-        'data-allow-clear': 'true',
-        'data-placeholder': 'Select a Country'
-    }))
-    region = forms.ModelChoiceField(queryset=Region.objects.none(
-    ), widget=forms.Select(attrs={
-        'class': 'select2',
-        'data-allow-clear': 'true',
-        'data-placeholder': 'Select a Region'
-    }))
-    city = forms.ModelChoiceField(queryset=City.objects.none(
-    ), widget=forms.Select(attrs={
-        'class': 'select2',
-        'data-allow-clear': 'true', 
-        'data-placeholder': 'Select a City'
-        }))
-
 
     class Meta:
         model = CustomUserProfile
-        fields = ['profile_picture', 'bio', 'occupation', 'profile_status',
-                  'country', 'region', 'city']
+        fields = ['profile_picture', 'bio', 'occupation',
+                  'profile_status', 'country', 'region', 'city']
