@@ -1,11 +1,13 @@
 from django.http import JsonResponse
+from django.utils import formats, timezone
+from datetime import timedelta
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import FormView
 from cities_light.models import Region, City
 
-from . import forms
-from . import models
+from .forms import UpdateUserProfileForm
+from .models import CustomUserProfile
 
 
 class UserProfileView(generic.TemplateView, LoginRequiredMixin):
@@ -16,35 +18,44 @@ class UserProfileView(generic.TemplateView, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile'] = models.CustomUserProfile.objects.get(
-            user=self.request.user)
+        user_profile = CustomUserProfile.objects.get(user=self.request.user)
+        date_joined = user_profile.user.date_joined
+        last_login = user_profile.user.last_login
+
+        formatted_date_joined = formats.date_format(date_joined, format='F j, Y')
+        context['date_joined'] = formatted_date_joined
+
+        time_elapsed = timezone.now() - last_login
+        if time_elapsed < timedelta(hours=1):
+            minutes = int(time_elapsed.total_seconds() // 60)
+            formatted_last_login = f"{minutes} minute(s) ago"
+        elif time_elapsed < timedelta(days=1):
+            hours = int(time_elapsed.total_seconds() // 3600)
+            formatted_last_login = f"{hours} hour(s) ago"
+        else:
+            days = int(time_elapsed.total_seconds() // 86400)
+            formatted_last_login = f"{days} day(s) ago"
+
+        context['last_login'] = formatted_last_login
+        context['profile'] = user_profile
         return context
 
 
-class UpdateProfileView(LoginRequiredMixin, FormView):
-    """
-    View for the update profile page.
-    """
+class UpdateUserProfileView(LoginRequiredMixin, generic.UpdateView):
+    model = CustomUserProfile
+    form_class = UpdateUserProfileForm
     template_name = 'update_profile.html'
-    form_class = forms.UpdateUserProfileForm
-    success_url = 'user_profile'
+
+    def get_success_url(self):
+        return reverse_lazy('user_profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user.customuserprofile
 
     def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['instance'] = self.request.user.customuserprofile
-        return kwargs
-
-    def get(self, request, *args, **kwargs):
-        self.object = None
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        self.object = None
-        return super().post(request, *args, **kwargs)
+        response = super().form_valid(form)
+        # Perform additional actions after a valid form submission if needed
+        return response
 
 
 def get_regions(request):
