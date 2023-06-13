@@ -13,23 +13,22 @@
 
       {% if process == "connect" %}
       {% if provider.name == 'Facebook' %}
-      <h3>Sign In with <img src="{% static 'images/facebook-big-icon.svg' %}" alt="Facebook" class="img-fluid"
-          width="100px"></h3>
+      <h3>Sign In with <img src="{% static 'images/facebook-big-icon.svg' %}" alt="Facebook" class="img-fluid mb-2"
+          width="130px"></h3>
       {% elif provider.name == 'Google' %}
       <h3>Sign In with <img src="{% static 'images/google-big-icon.svg' %}" alt="Google" class="img-fluid"
           width="100px"></h3>
       {% endif %}
-      <h3>Connect to {{ provider.name }}</h3>
-      <p>You are about to connect a {{ provider.name|lower }} account.</p>
+      <p>You are about to connect your {{ provider.name|lower }} account.</p>
       {% else %}
       {% if provider.name == 'Facebook' %}
       <h3>Sign In with <img src="{% static 'images/facebook-big-icon.svg' %}" alt="Facebook" class="img-fluid"
-          width="100px"></h3>
+          width="130px"></h3>
       {% elif provider.name == 'Google' %}
       <h3>Sign In with <img src="{% static 'images/google-big-icon.svg' %}" alt="Google" class="img-fluid"
           width="100px"></h3>
       {% endif %}
-      <p>You are about to sign in using a {{ provider.name|lower }} account.</p>
+      <p>You are about to sign in using your {{ provider.name|lower }} account.</p>
       {% endif %}
       <form class="col-10" method="post">
         {% csrf_token %}
