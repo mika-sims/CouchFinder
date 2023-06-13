@@ -37,7 +37,7 @@
 /*--------------------------------------------------------
 Background image for hero, signup, login pages
 *--------------------------------------------------------*/
-#hero, #signup, #login {
+#hero, #signup, #login, #sociallogin {
   background-image: linear-gradient(#ffffffb0, #ffffff6b),
     url("/static/images/hero.jpg");
   background-repeat: no-repeat;
