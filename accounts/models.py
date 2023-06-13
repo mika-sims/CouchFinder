@@ -64,7 +64,22 @@ class CustomUserProfile(models.Model):
         return f'{self.user.first_name} {self.user.last_name}'
     
     def get_location(self):
-        return f'{self.city.name}, {self.region.name}, {self.country.name}'
+        location = []
+
+        if self.city:
+            location.append(str(self.city))
+
+        if self.region and self.city and self.region != self.city.region:
+            location.append(str(self.region))
+
+        if self.country and (
+            not self.region or not self.city or self.country != self.region.country
+        ):
+            location.append(str(self.country))
+
+        return ", ".join(location)
+
+
     
     def is_hosting(self):
         return self.profile_status == 'hosting'
