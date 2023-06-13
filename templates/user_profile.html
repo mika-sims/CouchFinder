@@ -19,9 +19,8 @@
                                 class="profile-page-image img-fluid rounded-circle mb-4" width="120">
                             {% endif %}
                             <h4 class="text-light">{{ profile.user }}</h4>
-                            <p class="text-primary fw-semibold">{{ profile.city.name }}, {{ profile.region.name }},
-                                {{ profile.country.name }}</p>
-                            <p class="mt-1 text-uppercase text-light col-12 text-center py-2 {{ profile.profile_status }}">
+                            <p class="text-primary fw-semibold">{{ profile.get_location }}</p>
+                            <p class="mt-1 text-uppercase text-light col-12 text-center py-2 bg-danger">
                                 {% if profile.profile_status == 'hosting' %}
                                 Accepting Guests
                                 {% elif profile.profile_status == 'travelling' %}
