@@ -4,15 +4,6 @@
 
 
 $(document).ready(function () {
-    // Initialize Select2 library on the country, region, and city fields
-    // with the .select2 class attribute
-    $('.select2').select2({
-        dropdownAutoWidth: true,
-        width: '100%',
-        dropdownParent: $('#updateProfileForm'),
-        focus: true,
-    });
-
     // Trigger search on dropdown when it is opened
     $('.select2').on('select2:open', function () {
         $(this).data('select2').dropdown.$search.focus();
@@ -20,9 +11,39 @@ $(document).ready(function () {
 
     // Get the form and fields
     const form = $('#updateProfileForm');
-    const countryField = form.find('#id_country');
-    const regionField = form.find('#id_region');
-    const cityField = form.find('#id_city');
+    const countryField = form.find('#id_country').addClass('country-select2');
+    const regionField = form.find('#id_region').addClass('region-select2');
+    const cityField = form.find('#id_city').addClass('city-select2');
+
+    // Initialize Select2 library on the country, region, and city fields
+    // with the .select2 class attribute
+    $('.country-select2').select2({
+        dropdownAutoWidth: true,
+        width: '100%',
+        dropdownParent: $('#updateProfileForm'),
+        focus: true,
+        placeholder: 'Select a Country',
+        allowClear: true,
+    });
+
+    $('.region-select2').select2({
+        dropdownAutoWidth: true,
+        width: '100%',
+        dropdownParent: $('#updateProfileForm'),
+        focus: true,
+        placeholder: 'Select a Region',
+        allowClear: true,
+    });
+
+    $('.city-select2').select2({
+        dropdownAutoWidth: true,
+        width: '100%',
+        dropdownParent: $('#updateProfileForm'),
+        focus: true,
+        placeholder: 'Select a City',
+        allowClear: true,
+    });
+
 
     // Disable region and city fields initially
     regionField.prop('disabled', true);
