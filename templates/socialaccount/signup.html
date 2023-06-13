@@ -1,22 +1,45 @@
-{% extends "socialaccount/base.html" %}
-
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Sign Up" %}</h1>
+<section class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center" id="socialsignup">
+  <div class="container row d-flex flex-column justify-content-center align-items-center">
+    <div
+      class="col-12 col-md-10 col-lg-5 bg-light py-5 px-3 d-flex flex-column justify-content-center align-items-center shadow">
+      {% if account.get_provider.name == 'Facebook' %}
+      <h3>Sign Up with <img src="{% static 'images/facebook-big-icon.svg' %}" alt="Facebook" class="img-fluid"
+          width="100px"></h3>
+      {% elif account.get_provider.name == 'Google' %}
+      <h3>Sign Up with <img src="{% static 'images/google-big-icon.svg' %}" alt="Google" class="img-fluid"
+          width="100px"></h3>
+      {% endif %}
+      <p>You are about to use your {{account.get_provider.name}} account to login to
+        {{site_name}}. As a final step, please complete the following form:</p>
+      <form class="signup col-12" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="container">
+          <div class="row ">
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-secondary text-light col-12">Continue</button>
+            </div>
+            <div class="col-md-6">
+              <a class="btn btn-outline-danger col-12" href="{% url 'homepage' %}">Cancle</a>
+            </div>
+          </div>
+        </div>
+      </form>
 
-<p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
-{{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
-
+    </div>
+  </div>
+</section>
 {% endblock %}
