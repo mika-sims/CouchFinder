@@ -37,16 +37,10 @@
             <div class="col-lg-8 mt-5 mt-lg-0 order-2">
                 <div class="container shadow py-3 px-3 px-lg-5">
                     <div class="card-body">
-                        {% for message in messages %}
-                        <div class="alert alert-secondary" data-timeout="3000" id="msg" role="alert">
-                            {{ message | safe }}
-                        </div>
-                        {% endfor %}
                         <ul class="nav nav-tabs nav-tabs-bordered small">
                             {%if request.user == user%}
                             <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab"
-                                    data-bs-target="#profile-overview">Overview</button>
+                                <p class="nav-link active fw-bold">Overview</p>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'update_profile' %}" class="nav-link">Edit Profile</a>
