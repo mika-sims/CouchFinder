@@ -383,7 +383,7 @@ MEDIA QUIRIES
 
 @media screen and (min-width: 480px) {
   .logo {
-    max-width: 25vw;
+    max-width: 7em;
   }
 
   .hero-logo {
@@ -392,10 +392,6 @@ MEDIA QUIRIES
 }
 
 @media screen and (min-width: 768px) {
-  .logo {
-    max-width: 18vw;
-  }
-
   .hero-logo {
     width: 65vw;
   }
@@ -412,9 +408,6 @@ MEDIA QUIRIES
 }
 
 @media screen and (min-width: 992px) {
-  .logo {
-    max-width: 15vw;
-  }
   .hero-logo {
     width: 55vw;
   }
@@ -429,7 +422,7 @@ MEDIA QUIRIES
 
 @media screen and (min-width: 1200px) {
   .logo {
-    max-width: 13vw;
+    max-width: 8em;
   }
   .hero-logo {
     width: 45vw;
