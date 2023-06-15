@@ -2,15 +2,15 @@
   max-width: 30vw;
 }
 
-.footnote{
+.footnote {
   font-size: 0.75em;
 }
 
-.small-logo{
+.small-logo {
   max-width: 3em;
 }
 
-.dash-mode{
+.dash-mode {
   height: 2px;
   color: #264653;
 }
@@ -20,7 +20,6 @@
   max-height: 200px;
   object-fit: contain;
 }
-
 
 .travelling {
   background-color: #2a9d8f;
@@ -34,10 +33,23 @@
   background-color: #2c384e;
 }
 
+.mail-send-img {
+  max-width: 300px;
+  z-index: 0;
+}
+
 /*--------------------------------------------------------
 Background image for hero, signup, login pages
 *--------------------------------------------------------*/
-#hero, #signup, #login, #sociallogin, #socialsignup {
+#hero,
+#signup,
+#login,
+#sociallogin,
+#socialsignup,
+#password-reset,
+#password-reset-done,
+#password-reset-from-key,
+#password-reset-from-key-done {
   background-image: linear-gradient(#ffffffb0, #ffffff6b),
     url("/static/images/hero.jpg");
   background-repeat: no-repeat;
@@ -348,8 +360,6 @@ LOGO ANIMATION
     animate-svg-fill-13 0.7s ease-out 2s both;
 }
 
-
-
 /* 
 About Section
 */
@@ -366,7 +376,6 @@ About Section
 .hiw-card-img {
   max-height: 16em;
 }
-
 
 /*===========
 MEDIA QUIRIES
@@ -391,7 +400,7 @@ MEDIA QUIRIES
     width: 65vw;
   }
 
-  .small-logo{
+  .small-logo {
     max-width: 5em;
   }
 
@@ -410,7 +419,6 @@ MEDIA QUIRIES
     width: 55vw;
   }
 
-  
   .profile-page-image {
     width: 200px;
     height: 200px;
@@ -427,7 +435,7 @@ MEDIA QUIRIES
     width: 45vw;
   }
 
-  .small-logo{
+  .small-logo {
     max-width: 7em;
   }
 }
