@@ -15,11 +15,8 @@
           <div class="card-body p-3 bg-light">
             <div class="row align-items-center justify-content-lg-around">
               <div class="col-12">
-                <div class="text-center mt-4">
-                  <img class="img-fluid small-logo" src="{% static 'images/small-logo.svg' %}" alt="small logo">
-                </div>
                 <h5 class="text-center fw-bold mb-3 mx-1 mx-md-4 mt-4">Hello! Welcome back.</h5>
-                <p class="text-center small">Login with your email address</p>
+                <p class="text-center small">Login with your email address.</p>
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                   {% csrf_token %}
                   {% if form.errors %}
@@ -77,13 +74,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="container m-0 p-0">
-                  <p>Don't have an account?
+                <div class="container m-0 p-0 text-center">
+                  <p class="m-0 text-primary">Don't have an account?
                     <a href="{% url 'account_signup' %}" class="link text-decoration-none text-danger">
                       Create One
                     </a>
                   </p>
-
+                  <p class="text-primary">It's FREE!</p>
                 </div>
               </div>
             </div>
