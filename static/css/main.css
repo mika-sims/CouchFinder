@@ -49,7 +49,8 @@ Background image for hero, signup, login pages
 #password-reset,
 #password-reset-done,
 #password-reset-from-key,
-#password-reset-from-key-done {
+#password-reset-from-key-done,
+#password-change {
   background-image: linear-gradient(#ffffffb0, #ffffff6b),
     url("/static/images/hero.jpg");
   background-repeat: no-repeat;
