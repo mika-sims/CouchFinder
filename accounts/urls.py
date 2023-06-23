@@ -11,4 +11,6 @@ urlpatterns = [
          views.UpdateUserProfileView.as_view(), name='update_profile'),
     path('password/reset/key/done/', views.CustomPasswordResetFromKeyView.as_view(),
          name='password_reset_from_key_done'),
+    path('password/change/', views.CustomPasswordChangeView.as_view(),
+         name='password_change'),
 ]
