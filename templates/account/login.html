@@ -8,7 +8,7 @@
 {% block content %}
 <section class="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center py-5"
   id="login">
-  <div class="container">
+  <div class="container text-center">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
         <div class="text-primary shadow">
@@ -67,7 +67,8 @@
                     </div>
                     <div class="col-12 mb-3">
                       <button class="btn btn-success col-12">
-                        <a class="link text-decoration-none" href="{% provider_login_url 'facebook' method='oauth2' %}"><img class="me-3"
+                        <a class="link text-decoration-none"
+                          href="{% provider_login_url 'facebook' method='oauth2' %}"><img class="me-3"
                             src="{% static 'images/facebook-icon.svg' %}" alt="facebook icon" width="25">Login with
                           Facebook</a>
                       </button>
