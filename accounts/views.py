@@ -4,7 +4,10 @@ from datetime import timedelta
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from allauth.account.views import PasswordResetFromKeyView
 from cities_light.models import Region, City
+
 
 from .forms import UpdateUserProfileForm
 from .models import CustomUserProfile
@@ -74,3 +77,12 @@ def get_cities(request):
         'cities': [{'id': city.id, 'name': city.name} for city in cities]
     }
     return JsonResponse(data)
+
+
+class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
+    success_url = reverse_lazy('account_login')
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super().as_view(**initkwargs)
+        return login_required(view)
