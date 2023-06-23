@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from allauth.account.views import PasswordResetFromKeyView
+from allauth.account.views import PasswordResetFromKeyView, PasswordChangeView
 from cities_light.models import Region, City
 
 
@@ -81,6 +81,15 @@ def get_cities(request):
 
 class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
     success_url = reverse_lazy('account_login')
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super().as_view(**initkwargs)
+        return login_required(view)
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    success_url = reverse_lazy('user_profile')
 
     @classmethod
     def as_view(cls, **initkwargs):
